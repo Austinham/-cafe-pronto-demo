@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/-cafe-pronto-demo/static/css/main.3e69f082.css",
+    "main.js": "/-cafe-pronto-demo/static/js/main.d5e4826f.js",
+    "index.html": "/-cafe-pronto-demo/index.html",
+    "main.3e69f082.css.map": "/-cafe-pronto-demo/static/css/main.3e69f082.css.map",
+    "main.d5e4826f.js.map": "/-cafe-pronto-demo/static/js/main.d5e4826f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e69f082.css",
+    "static/js/main.d5e4826f.js"
+  ]
+}
