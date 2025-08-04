@@ -1,0 +1,41 @@
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Menu from "./pages/Menu";
+import Catering from "./pages/Catering";
+import About from "./pages/About";
+import { Toaster } from "./components/ui/sonner";
+import "./index.css";
+
+// Import Google Fonts
+const fontLink = document.createElement('link');
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap';
+fontLink.rel = 'stylesheet';
+document.head.appendChild(fontLink);
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Navigation />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/catering" element={<Catering />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+        <Toaster />
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
