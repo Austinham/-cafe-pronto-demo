@@ -133,42 +133,159 @@ body {
   }
 }
 
+/* Webkit fallback for older browsers */
+@-webkit-keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
 /* Scroll transition flash effect */
 @keyframes navbarFlash {
   0% {
     opacity: 0;
     filter: blur(0px);
+    -webkit-filter: blur(0px);
   }
   20% {
     opacity: 0.3;
     filter: blur(8px);
+    -webkit-filter: blur(8px);
   }
   50% {
     opacity: 0.2;
     filter: blur(12px);
+    -webkit-filter: blur(12px);
   }
   80% {
     opacity: 0.05;
     filter: blur(20px);
+    -webkit-filter: blur(20px);
   }
   100% {
     opacity: 0;
     filter: blur(30px);
+    -webkit-filter: blur(30px);
+  }
+}
+
+/* Webkit fallback for flash animation */
+@-webkit-keyframes navbarFlash {
+  0% {
+    opacity: 0;
+    -webkit-filter: blur(0px);
+  }
+  20% {
+    opacity: 0.3;
+    -webkit-filter: blur(8px);
+  }
+  50% {
+    opacity: 0.2;
+    -webkit-filter: blur(12px);
+  }
+  80% {
+    opacity: 0.05;
+    -webkit-filter: blur(20px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-filter: blur(30px);
   }
 }
 
 /* Smooth navbar transitions */
 .navbar-transition {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced backdrop blur */
+/* Enhanced backdrop blur with fallbacks */
 .backdrop-blur-enhanced {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Navbar flash effect */
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-enhanced {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Navbar flash effect with cross-browser support */
 .navbar-flash {
   animation: navbarFlash 1s ease-out;
+  -webkit-animation: navbarFlash 1s ease-out;
+}
+
+/* Fallback for browsers that don't support filter */
+@supports not (filter: blur(0px)) {
+  .navbar-flash {
+    animation: navbarFlashFallback 1s ease-out;
+    -webkit-animation: navbarFlashFallback 1s ease-out;
+  }
+}
+
+/* Fallback animation without blur */
+@keyframes navbarFlashFallback {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  80% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes navbarFlashFallback {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  80% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Ensure smooth scrolling works on all platforms */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .navbar-flash {
+    animation-duration: 0.8s; /* Slightly faster on mobile */
+    -webkit-animation-duration: 0.8s;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .navbar-flash {
+    animation-duration: 1.2s; /* Slightly slower on high DPI for smoother effect */
+    -webkit-animation-duration: 1.2s;
+  }
 }

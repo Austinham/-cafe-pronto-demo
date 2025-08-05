@@ -3,6 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Coffee } from 'lucide-react';
 import { Button } from './ui/button';
 
+// Feature detection for cross-platform compatibility
+const supportsBackdropFilter = CSS.supports('backdrop-filter', 'blur(1px)') || 
+                              CSS.supports('-webkit-backdrop-filter', 'blur(1px)');
+const supportsFilter = CSS.supports('filter', 'blur(1px)') || 
+                      CSS.supports('-webkit-filter', 'blur(1px)');
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,11 +32,11 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
+      const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
       const currentScrollDirection = scrollTop > lastScrollY ? 'down' : 'up';
       const wasScrolled = isScrolled;
       
-      // Update scroll direction
+      // Update scroll direction with debouncing
       if (Math.abs(scrollTop - lastScrollY) > 10) {
         setScrollDirection(currentScrollDirection);
       }
@@ -37,28 +45,40 @@ const Navigation = () => {
       const newScrolledState = scrollTop > 30;
       setIsScrolled(newScrolledState);
       
-              // Trigger flash effect when navbar state changes
-        if (wasScrolled !== newScrolledState) {
-          setShowFlash(true);
-          setTimeout(() => setShowFlash(false), 1000);
-        }
+      // Trigger flash effect when navbar state changes
+      if (wasScrolled !== newScrolledState) {
+        setShowFlash(true);
+        setTimeout(() => setShowFlash(false), 1000);
+      }
       
       setLastScrollY(scrollTop);
     };
 
     // Only add scroll listener on homepage
     if (isHomePage) {
+      // Add passive scroll listener for better performance
       window.addEventListener('scroll', handleScroll, { passive: true });
-      return () => window.removeEventListener('scroll', handleScroll);
+      
+      // Fallback for older browsers that don't support passive
+      if (!window.addEventListener) {
+        window.attachEvent('onscroll', handleScroll);
+      }
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        if (window.detachEvent) {
+          window.detachEvent('onscroll', handleScroll);
+        }
+      };
     } else {
       setIsScrolled(true); // Always solid on other pages
     }
   }, [isHomePage, lastScrollY, isScrolled]);
 
-  // Enhanced dynamic classes with better animations
+  // Enhanced dynamic classes with better animations and cross-browser support
   const navClasses = isHomePage && !isScrolled 
     ? "fixed top-0 w-full bg-transparent z-50 transition-all duration-500 ease-out transform"
-    : "fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-lg transition-all duration-500 ease-out transform";
+    : "fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-lg transition-all duration-500 ease-out transform backdrop-blur-enhanced";
 
   // Logo animation classes
   const logoClasses = isHomePage && !isScrolled 
@@ -95,9 +115,15 @@ const Navigation = () => {
 
   return (
     <nav className={navClasses}>
-      {/* Flash effect overlay for scroll transition */}
+      {/* Flash effect overlay for scroll transition with cross-platform support */}
       {showFlash && (
-        <div className="absolute inset-0 bg-white/15 navbar-flash backdrop-blur-md"></div>
+        <div 
+          className={`absolute inset-0 bg-white/15 navbar-flash ${supportsBackdropFilter ? 'backdrop-blur-md' : ''}`}
+          style={{
+            // Fallback for browsers without backdrop-filter support
+            backgroundColor: !supportsBackdropFilter ? 'rgba(255, 255, 255, 0.2)' : undefined
+          }}
+        ></div>
       )}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
