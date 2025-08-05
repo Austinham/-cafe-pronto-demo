@@ -133,31 +133,16 @@ body {
   }
 }
 
-/* Flash effect animations */
-@keyframes flashGlow {
+/* Scroll transition flash effect */
+@keyframes navbarFlash {
   0% {
     opacity: 0;
-    transform: scaleX(0);
   }
   50% {
     opacity: 0.3;
-    transform: scaleX(1);
   }
   100% {
     opacity: 0;
-    transform: scaleX(1);
-  }
-}
-
-@keyframes buttonFlash {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
@@ -172,11 +157,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Flash effect classes */
-.flash-effect {
-  animation: flashGlow 0.6s ease-out;
-}
-
-.button-flash {
-  animation: buttonFlash 0.6s ease-out;
+/* Navbar flash effect */
+.navbar-flash {
+  animation: navbarFlash 0.6s ease-out;
 }
