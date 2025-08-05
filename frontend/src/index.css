@@ -140,20 +140,20 @@ body {
     filter: blur(0px);
   }
   20% {
-    opacity: 0.4;
-    filter: blur(2px);
+    opacity: 0.3;
+    filter: blur(8px);
   }
   50% {
-    opacity: 0.3;
-    filter: blur(1px);
+    opacity: 0.2;
+    filter: blur(12px);
   }
   80% {
-    opacity: 0.1;
-    filter: blur(3px);
+    opacity: 0.05;
+    filter: blur(20px);
   }
   100% {
     opacity: 0;
-    filter: blur(5px);
+    filter: blur(30px);
   }
 }
 
@@ -170,5 +170,5 @@ body {
 
 /* Navbar flash effect */
 .navbar-flash {
-  animation: navbarFlash 0.8s ease-out;
+  animation: navbarFlash 1s ease-out;
 }

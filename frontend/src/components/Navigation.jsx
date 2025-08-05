@@ -40,7 +40,7 @@ const Navigation = () => {
               // Trigger flash effect when navbar state changes
         if (wasScrolled !== newScrolledState) {
           setShowFlash(true);
-          setTimeout(() => setShowFlash(false), 800);
+          setTimeout(() => setShowFlash(false), 1000);
         }
       
       setLastScrollY(scrollTop);
@@ -97,7 +97,7 @@ const Navigation = () => {
     <nav className={navClasses}>
       {/* Flash effect overlay for scroll transition */}
       {showFlash && (
-        <div className="absolute inset-0 bg-white/20 navbar-flash backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-white/15 navbar-flash backdrop-blur-md"></div>
       )}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
