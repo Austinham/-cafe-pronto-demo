@@ -11,12 +11,6 @@ import About from "./pages/About";
 import { Toaster } from "./components/ui/sonner";
 import "./index.css";
 
-// Import Google Fonts
-const fontLink = document.createElement('link');
-fontLink.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap';
-fontLink.rel = 'stylesheet';
-document.head.appendChild(fontLink);
-
 // ScrollToTop component to ensure proper scroll behavior
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,10 +32,41 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = React.useState(true);
+
   // Ensure proper scroll behavior on app load
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Wait for fonts to load
+    if ('fonts' in document) {
+      Promise.all([
+        document.fonts.load('400 1em Playfair Display'),
+        document.fonts.load('400 1em Inter'),
+        document.fonts.load('700 1em Playfair Display'),
+        document.fonts.load('700 1em Inter')
+      ]).then(() => {
+        setIsLoading(false);
+      }).catch(() => {
+        // Fallback if font loading fails
+        setTimeout(() => setIsLoading(false), 500);
+      });
+    } else {
+      // Fallback for browsers that don't support font loading API
+      setTimeout(() => setIsLoading(false), 500);
+    }
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-amber-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mx-auto mb-4"></div>
+          <p className="text-amber-800 font-medium">Loading Cafe Pronto...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
