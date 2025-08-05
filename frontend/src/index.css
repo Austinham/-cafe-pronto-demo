@@ -100,10 +100,10 @@ code {
   background: #5A3921;
 }
 
-/* Smooth scrolling */
-html {
+/* Smooth scrolling - disabled for navigation issues */
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* Text selection color */
 ::selection {
