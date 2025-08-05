@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop />
         <Navigation />
         <main>
@@ -76,7 +76,7 @@ function App() {
         </main>
         <Footer />
         <Toaster />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
