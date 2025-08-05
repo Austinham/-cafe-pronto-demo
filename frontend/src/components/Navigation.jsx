@@ -50,14 +50,14 @@ const Navigation = () => {
     ? "fixed top-0 w-full bg-transparent z-50 transition-all duration-500 ease-out transform"
     : "fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-lg border-b border-amber-100/50 transition-all duration-500 ease-out transform";
 
-  // Logo animation classes
+  // Logo animation classes with flash effect
   const logoClasses = isHomePage && !isScrolled 
-    ? "flex items-center space-x-2 text-white hover:text-white/80 transition-all duration-300 ease-out transform hover:scale-105"
-    : "flex items-center space-x-2 text-amber-800 hover:text-amber-600 transition-all duration-300 ease-out transform hover:scale-105";
+    ? "flex items-center space-x-2 text-white hover:text-white/80 transition-all duration-300 ease-out transform hover:scale-105 relative overflow-hidden group"
+    : "flex items-center space-x-2 text-amber-800 hover:text-amber-600 transition-all duration-300 ease-out transform hover:scale-105 relative overflow-hidden group";
 
-  // Enhanced link classes with better hover effects
+  // Enhanced link classes with better hover effects and flash
   const linkClasses = (path) => {
-    const baseClasses = "text-base font-medium transition-all duration-300 ease-out relative group";
+    const baseClasses = "text-base font-medium transition-all duration-300 ease-out relative group overflow-hidden";
     if (isActive(path)) {
       return `${baseClasses} ${isHomePage && !isScrolled ? 'text-white' : 'text-amber-700'}`;
     }
@@ -78,10 +78,13 @@ const Navigation = () => {
     return `${baseClasses} ${isHomePage && !isScrolled ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-700 hover:text-amber-600 hover:bg-amber-50'}`;
   };
 
-  // Enhanced button classes
+  // Enhanced button classes with flash effect
   const buttonClasses = isHomePage && !isScrolled 
-    ? "text-white hover:text-white hover:bg-white/10 transition-all duration-200 ease-out transform hover:scale-105"
-    : "text-amber-800 hover:text-amber-600 hover:bg-amber-50 transition-all duration-200 ease-out transform hover:scale-105";
+    ? "text-white hover:text-white hover:bg-white/10 transition-all duration-200 ease-out transform hover:scale-105 relative overflow-hidden group"
+    : "text-amber-800 hover:text-amber-600 hover:bg-amber-50 transition-all duration-200 ease-out transform hover:scale-105 relative overflow-hidden group";
+
+  // Flash effect classes
+  const flashClasses = "absolute inset-0 bg-white/40 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left rounded-md";
 
   return (
     <nav className={navClasses}>
@@ -89,9 +92,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16 md:h-16">
           {/* Enhanced Logo */}
           <Link to="/" className={logoClasses}>
-            <Coffee className="h-8 w-8 transition-transform duration-300 ease-out group-hover:rotate-12" />
+            {/* Flash effect overlay */}
+            <div className={flashClasses}></div>
+            <Coffee className="h-8 w-8 transition-transform duration-300 ease-out group-hover:rotate-12 relative z-10" />
             <span 
-              className="text-2xl font-bold font-serif transition-all duration-300 ease-out" 
+              className="text-2xl font-bold font-serif transition-all duration-300 ease-out relative z-10" 
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               Cafe Pronto
@@ -106,12 +111,14 @@ const Navigation = () => {
                 to={link.path}
                 className={linkClasses(link.path)}
               >
-                {link.name}
+                {/* Flash effect overlay */}
+                <div className={flashClasses}></div>
+                <span className="relative z-10">{link.name}</span>
                 {isActive(link.path) && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-600 rounded-full transition-all duration-300 ease-out transform scale-x-100"></span>
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-600 rounded-full transition-all duration-300 ease-out transform scale-x-100 z-20"></span>
                 )}
                 {/* Enhanced hover underline effect */}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-600 rounded-full transition-all duration-300 ease-out group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-600 rounded-full transition-all duration-300 ease-out group-hover:w-full z-20"></span>
               </Link>
             ))}
           </div>
@@ -124,10 +131,12 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className={buttonClasses}
             >
+              {/* Flash effect overlay */}
+              <div className={flashClasses}></div>
               {isOpen ? (
-                <X className="h-6 w-6 transition-transform duration-300 ease-out rotate-180" />
+                <X className="h-6 w-6 transition-transform duration-300 ease-out rotate-180 relative z-10" />
               ) : (
-                <Menu className="h-6 w-6 transition-transform duration-300 ease-out" />
+                <Menu className="h-6 w-6 transition-transform duration-300 ease-out relative z-10" />
               )}
             </Button>
           </div>
