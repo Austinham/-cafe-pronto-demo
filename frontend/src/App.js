@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -17,10 +17,22 @@ fontLink.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@
 fontLink.rel = 'stylesheet';
 document.head.appendChild(fontLink);
 
+// ScrollToTop component to ensure proper scroll behavior
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Navigation />
         <main>
           <Routes>

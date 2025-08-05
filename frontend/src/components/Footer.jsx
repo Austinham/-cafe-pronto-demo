@@ -28,27 +28,24 @@ const Footer = () => {
             
             {/* Social Media Links */}
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <button 
                 className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors duration-300"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
+              </button>
+              <button 
                 className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
+              </button>
+              <button 
                 className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors duration-300"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -128,15 +125,15 @@ const Footer = () => {
           </p>
           
           <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-amber-100 hover:text-white transition-colors">
+            <button className="text-amber-100 hover:text-white transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="text-amber-100 hover:text-white transition-colors">
+            </button>
+            <button className="text-amber-100 hover:text-white transition-colors">
               Terms of Service
-            </a>
-            <a href="#" className="text-amber-100 hover:text-white transition-colors">
+            </button>
+            <button className="text-amber-100 hover:text-white transition-colors">
               Accessibility
-            </a>
+            </button>
           </div>
         </div>
       </div>
