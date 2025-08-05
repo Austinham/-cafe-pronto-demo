@@ -110,3 +110,13 @@ code {
   background-color: #8B614D;
   color: white;
 }
+
+/* Ensure proper scroll behavior */
+html, body {
+  scroll-behavior: auto;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}

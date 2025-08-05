@@ -22,13 +22,44 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   React.useEffect(() => {
+    // Force scroll to top immediately
     window.scrollTo(0, 0);
+    
+    // Also use a timeout as backup to ensure it works
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
+
+  // Additional effect to handle any remaining scroll issues
+  React.useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
 
   return null;
 }
 
 function App() {
+  // Ensure proper scroll behavior on app load
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
