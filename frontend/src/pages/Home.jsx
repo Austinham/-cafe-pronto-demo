@@ -45,7 +45,7 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section 
-        className="relative h-screen flex items-center overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-0"
         style={{
           backgroundImage: `url(https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)`,
           backgroundSize: 'cover',
@@ -57,15 +57,15 @@ const Home = () => {
         
         {/* Left-aligned Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl pt-8 md:pt-0">
             {/* Welcome Badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 md:mb-8">
               <span className="text-white/90 text-sm font-medium">Welcome to Cafe Pronto</span>
             </div>
 
             {/* Main Headline */}
             <h1 
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               Quality Coffee{' '}
@@ -73,16 +73,16 @@ const Home = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl mb-8 text-white/90 font-light leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white/90 font-light leading-relaxed">
               Experience the perfect balance of speed and excellence. Where premium coffee meets efficient service in the heart of your neighborhood.
             </p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12">
               <Link to="/menu">
                 <Button 
                   size="lg"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center"
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center"
                 >
                   View Our Menu
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -92,7 +92,7 @@ const Home = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-medium transition-all duration-300"
+                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-medium transition-all duration-300"
                 >
                   Catering Services
                 </Button>
@@ -100,7 +100,7 @@ const Home = () => {
             </div>
 
             {/* Glass Morphism Catering Callout */}
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 max-w-lg">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 md:p-8 max-w-lg">
               <h3 
                 className="text-2xl font-semibold mb-3 text-white"
                 style={{ fontFamily: 'Playfair Display, serif' }}
