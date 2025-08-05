@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/-cafe-pronto-demo/static/css/main.920ab4b3.css",
-    "main.js": "/-cafe-pronto-demo/static/js/main.68b40f2d.js",
+    "main.css": "/-cafe-pronto-demo/static/css/main.a73690b6.css",
+    "main.js": "/-cafe-pronto-demo/static/js/main.e0d84df0.js",
     "index.html": "/-cafe-pronto-demo/index.html",
-    "main.920ab4b3.css.map": "/-cafe-pronto-demo/static/css/main.920ab4b3.css.map",
-    "main.68b40f2d.js.map": "/-cafe-pronto-demo/static/js/main.68b40f2d.js.map"
+    "main.a73690b6.css.map": "/-cafe-pronto-demo/static/css/main.a73690b6.css.map",
+    "main.e0d84df0.js.map": "/-cafe-pronto-demo/static/js/main.e0d84df0.js.map"
   },
   "entrypoints": [
-    "static/css/main.920ab4b3.css",
-    "static/js/main.68b40f2d.js"
+    "static/css/main.a73690b6.css",
+    "static/js/main.e0d84df0.js"
   ]
 }
