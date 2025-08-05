@@ -58,7 +58,7 @@ const Navigation = () => {
   // Enhanced dynamic classes with better animations
   const navClasses = isHomePage && !isScrolled 
     ? "fixed top-0 w-full bg-transparent z-50 transition-all duration-500 ease-out transform"
-    : "fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-lg border-b border-amber-100/50 transition-all duration-500 ease-out transform";
+    : "fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-lg transition-all duration-500 ease-out transform";
 
   // Logo animation classes
   const logoClasses = isHomePage && !isScrolled 
@@ -76,8 +76,8 @@ const Navigation = () => {
 
   // Enhanced mobile menu classes
   const mobileMenuClasses = isHomePage && !isScrolled 
-    ? "md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md border-b border-white/20 shadow-xl transition-all duration-300 ease-out"
-    : "md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md border-b border-amber-100/50 shadow-xl transition-all duration-300 ease-out";
+    ? "md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md shadow-xl transition-all duration-300 ease-out"
+    : "md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md shadow-xl transition-all duration-300 ease-out";
 
   // Enhanced mobile link classes
   const mobileLinkClasses = (path) => {
