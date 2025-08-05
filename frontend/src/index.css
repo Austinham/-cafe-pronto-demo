@@ -120,3 +120,26 @@ html, body {
 body {
   min-height: 100vh;
 }
+
+/* Navbar animations */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth navbar transitions */
+.navbar-transition {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced backdrop blur */
+.backdrop-blur-enhanced {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
