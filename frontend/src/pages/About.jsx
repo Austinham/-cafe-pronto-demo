@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Coffee, Clock, Award, Users, Heart, Leaf } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 
 const About = () => {
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const values = [
     {
       icon: Coffee,
